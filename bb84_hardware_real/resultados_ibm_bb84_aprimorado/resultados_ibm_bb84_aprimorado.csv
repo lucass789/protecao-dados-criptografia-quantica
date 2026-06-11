@@ -1,0 +1,7 @@
+cenario,backend,job_id,qubits_transmitidos,bits_validos,taxa_geracao,qber,chave_segura,shots,tempo_execucao,profundidade_circuito,erros_detectados,bits_corrigidos_reconciliacao,chave_final_integridade_ok,payload_integridade_ok
+BB84 IBM - sem Eva,ibm_fez,d84e9jmgbeec73ao0pk0,16,7,0.4375,0.0,True,1024,7.878155700000207,7,0,0,True,True
+BB84 IBM - sem Eva,ibm_fez,d84e9legbeec73ao0pmg,16,9,0.5625,0.0,True,1024,6.564260300001479,7,0,0,True,True
+BB84 IBM - sem Eva,ibm_fez,d84e9n7oha1c73bnn7fg,16,7,0.4375,0.0,True,1024,6.705707199998869,7,0,0,True,True
+BB84 IBM - com Eva simulada,ibm_fez,d84e9oo0bvlc73d4fncg,16,8,0.5,0.25,False,1024,7.2066630000008445,7,2,0,False,False
+BB84 IBM - com Eva simulada,ibm_fez,d84e9qmgbeec73ao0pu0,16,10,0.625,0.0,True,1024,6.545025600000372,7,0,0,True,True
+BB84 IBM - com Eva simulada,ibm_fez,d84e9s7oha1c73bnn7n0,16,8,0.5,0.375,False,1024,5.8555515999978525,7,3,0,False,False

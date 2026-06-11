@@ -1,0 +1,23 @@
+# =============================================================================
+# Dependências do projeto — Proteção de Dados com Criptografia Quântica
+# TCC: Lucas Vieira — Centro Universitário Senac Santo Amaro, 2025
+# =============================================================================
+# Instale com: pip install -r requirements.txt
+# Recomenda-se o uso de um ambiente virtual (python -m venv .venv)
+# =============================================================================
+
+# --- Modelo 1: Criptografia Clássica (AES-256 / RSA-2048) ---
+cryptography
+
+# --- Modelo 2: BB84 Simulado (AerSimulator) ---
+qiskit-aer
+
+# --- Modelo 3: BB84 em Hardware Real IBM ---
+# Versões fixadas por compatibilidade com a API IBM Quantum Platform usada no TCC.
+# Versões mais recentes podem apresentar mudanças na interface QiskitRuntimeService.
+qiskit~=2.3.1
+qiskit-ibm-runtime~=0.45.1
+
+# --- Visualização e utilitários (todos os modelos) ---
+matplotlib
+numpy

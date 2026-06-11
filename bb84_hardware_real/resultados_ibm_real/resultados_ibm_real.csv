@@ -1,0 +1,7 @@
+cenario,backend,job_id,qubits_transmitidos,bits_validos,taxa_geracao,qber,chave_segura,shots,tempo_execucao,profundidade_circuito,payload_integridade_ok
+Hardware IBM - sem Eva,ibm_marrakesh,d81u466gbeec73al2bf0,8,3,0.375,0.0,True,1024,7.010836000001291,5,True
+Hardware IBM - sem Eva,ibm_marrakesh,d81u47g0bvlc73d1jdp0,8,5,0.625,0.0,True,1024,6.499188199988566,7,True
+Hardware IBM - sem Eva,ibm_marrakesh,d81u49foha1c73bksdk0,8,2,0.25,0.0,True,1024,7.250398499978473,7,True
+Hardware IBM - com Eva simulada,ibm_marrakesh,d81u4b7oha1c73bksdlg,8,2,0.25,0.5,False,1024,6.516229300003033,7,False
+Hardware IBM - com Eva simulada,ibm_marrakesh,d81u4cvoha1c73bksdng,8,4,0.5,0.0,True,1024,6.485244900017278,7,True
+Hardware IBM - com Eva simulada,ibm_marrakesh,d81u4e80bvlc73d1jdv0,8,4,0.5,0.5,False,1024,6.469552599999588,7,False

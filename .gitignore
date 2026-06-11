@@ -1,0 +1,51 @@
+# Ambientes virtuais Python
+.venv/
+venv/
+env/
+ENV/
+
+# Credenciais e variáveis de ambiente - NUNCA versionar
+.env
+.env.local
+.env.*.local
+*.env
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# Distribuição / build
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários e compactados
+*.zip
+*.tar.gz
+*.log
+~$*
+*.tmp
+
+# Arquivos de lock temporários do Office (gerados ao abrir .docx/.xlsx)
+~$*.docx
+~$*.xlsx
+*.~lock.*
