@@ -474,6 +474,26 @@ def gerar_todos_os_graficos(metricas, niveis_ruido, qber_por_ruido, pasta_saida=
 
 
 # ============================================================
+# CIFRAÇÃO XOR COM CHAVE BB84 (ONE-TIME PAD)
+# ============================================================
+
+def xor_com_chave(mensagem: bytes, chave_bits: list) -> bytes:
+    """
+    Cifra/decifra uma mensagem usando XOR com bits da chave BB84.
+    Equivalente a um one-time pad quando a chave é tão longa quanto a mensagem.
+    """
+    resultado = bytearray()
+    for i, byte in enumerate(mensagem):
+        chave_byte = 0
+        for j in range(8):
+            bit_idx = i * 8 + j
+            if bit_idx < len(chave_bits):
+                chave_byte |= chave_bits[bit_idx] << (7 - j)
+        resultado.append(byte ^ chave_byte)
+    return bytes(resultado)
+
+
+# ============================================================
 # EXECUÇÃO DO PROGRAMA
 # ============================================================
 
@@ -483,6 +503,41 @@ if __name__ == "__main__":
     print("\nTCC — Proteção de Dados com Criptografia Quântica")
     print("Modelo 2 — Criptografia Quântica Simulada com BB84")
     print("=" * 60)
+
+    # ----------------------------------------------------------
+    # DEMONSTRAÇÃO: mensagem digitada → cifrada com chave BB84
+    # ----------------------------------------------------------
+    print("\n" + "=" * 60)
+    print("  DEMONSTRAÇÃO DE CIFRAGEM COM BB84")
+    print("=" * 60)
+
+    mensagem_input = input("\n  Digite a mensagem para cifrar: ")
+    mensagem_bytes = mensagem_input.encode("utf-8")
+    bits_necessarios = len(mensagem_bytes) * 8
+
+    # ~50% das bases coincidem, então usa-se 4x para garantir bits suficientes
+    n_qubits_demo = max(128, bits_necessarios * 4)
+
+    print(f"\n  Executando BB84 com {n_qubits_demo} qubits...")
+    resultado_demo = executar_bb84(n_qubits=n_qubits_demo, nivel_ruido=0.0, com_eva=False)
+
+    chave_bits = resultado_demo["chave_alice"][:bits_necessarios]
+
+    if len(chave_bits) < bits_necessarios:
+        print(f"\n  [!] Chave gerada insuficiente ({len(chave_bits)} bits disponíveis, "
+              f"{bits_necessarios} necessários). Tente uma mensagem mais curta.")
+    else:
+        ciphertext = xor_com_chave(mensagem_bytes, chave_bits)
+        recovered = xor_com_chave(ciphertext, chave_bits)
+
+        print(f"\n  Mensagem original   : {mensagem_input}")
+        print(f"  Chave BB84 (bits)   : {''.join(str(b) for b in chave_bits[:64])}... ({len(chave_bits)} bits)")
+        print(f"  Mensagem cifrada    : {ciphertext.hex()}")
+        print(f"  Mensagem recuperada : {recovered.decode('utf-8')}")
+        print(f"  Íntegra             : {recovered == mensagem_bytes}")
+        print(f"  QBER                : {resultado_demo['qber'] * 100:.2f}%")
+
+    print("\n" + "=" * 60)
 
     print("\nCenário 1: Canal ideal")
     resultado_ideal = executar_bb84(

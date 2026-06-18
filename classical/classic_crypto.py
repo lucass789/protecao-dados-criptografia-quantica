@@ -711,6 +711,41 @@ if __name__ == "__main__":
     print("  Author: Lucas Vieira")
     print("=" * 70)
 
+    # -----------------------------------------------------------------
+    # DEMONSTRATION: show plaintext → ciphertext → recovered
+    # -----------------------------------------------------------------
+    print(f"\n{'='*70}")
+    print("  ENCRYPTION DEMONSTRATION")
+    print(f"{'='*70}")
+
+    demo_input = input("\n  Type the message to encrypt: ")
+    demo_message = demo_input.encode()
+    print(f"    {demo_input}")
+
+    # AES demo
+    aes_demo = AESCipher()
+    aes_key = aes_demo.generate_key()
+    aes_encrypted = aes_demo.encrypt(demo_message, aes_key)
+    aes_recovered = aes_demo.decrypt(aes_encrypted, aes_key)
+
+    print("\n  [AES-256-CBC]")
+    print(f"    Key        : {aes_key.hex()}")
+    print(f"    IV         : {aes_encrypted['iv'].hex()}")
+    print(f"    Ciphertext : {aes_encrypted['ciphertext'].hex()}")
+    print(f"    Recovered  : {aes_recovered.hex()}")
+    print(f"    Intact     : {aes_recovered == demo_message}")
+
+    # RSA demo
+    rsa_demo = RSACipher()
+    rsa_demo.generate_key()
+    rsa_encrypted = rsa_demo.encrypt(demo_message)
+    rsa_recovered = rsa_demo.decrypt(rsa_encrypted)
+
+    print("\n  [RSA-2048]")
+    print(f"    Ciphertext : {rsa_encrypted.hex()}")
+    print(f"    Recovered  : {rsa_recovered.hex()}")
+    print(f"    Intact     : {rsa_recovered == demo_message}")
+
     # Output directory
     output_dir = "results_classic"
     os.makedirs(output_dir, exist_ok=True)
